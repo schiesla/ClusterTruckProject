@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCooDk0ln_ccwCuCUX9LtHC019vdYCSxWc",
+            authDomain: "nyevents-77bd9.firebaseapp.com",
+            databaseURL: "https://nyevents-77bd9.firebaseio.com",
+            projectId: "nyevents-77bd9",
+            storageBucket: "",
+            messagingSenderId: "73094720751"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAfDnbONaf2dEAsFIR4JEb2WolXTqsdgc&callback=initMap"
+    async defer>
+</script>  
+    <script src="markers.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+</head>
+<body>
+    <div id="map"></div>
+      
+</body>
+</html>
