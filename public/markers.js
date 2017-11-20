@@ -1,15 +1,27 @@
 var map;
 var facetChoice;
 var facetChosen = 0;
+var sw;
+var ne;
+
 
 //Runs when the page is loaded, in order to create a google map with the center in New York City.
 function initMap() {
   var newYorkCityLatLong = new google.maps.LatLng(40.7128, -74.0059);
   map = new google.maps.Map(document.getElementById('map'), {
     center: newYorkCityLatLong,
-    zoom: 9
+    zoom: 9,
   });
-  loadMarkers();
+  google.maps.event.addListener(map, 'bounds_changed', function() {
+    var bounds = map.getBounds();
+    sw = bounds.getSouthWest();
+    ne = bounds.getNorthEast();
+    swLat = sw.lat().toFixed(5);
+    swLng = sw.lng().toFixed(5);
+    neLat = ne.lat().toFixed(5);
+    neLng = ne.lng().toFixed(5);
+    loadMarkers();
+  });
 }
 
 //Queries the NY Times Geographic API and takes the results and creates markers out of them.
@@ -17,6 +29,8 @@ function loadMarkers() {
   var url = "https://api.nytimes.com/svc/semantic/v2/geocodes/query.json";
   if(facetChosen) {
     url += '?' + $.param({
+      'sw': swLat + ',' + swLng,
+      'ne': neLat + ',' + neLng,
       'facet': facetChoice,
       'country_code': "US",
       'api-key': "af9bf1c31430421ab0ab8f940e8b987f"
@@ -24,6 +38,8 @@ function loadMarkers() {
     facetChosen = 0;
   } else {
     url += '?' + $.param({
+      'sw': swLat + ',' + swLng,
+      'ne': neLat + ',' + neLng,
       'country_code': "US",
       'api-key': "af9bf1c31430421ab0ab8f940e8b987f"
   });
@@ -37,11 +53,13 @@ function loadMarkers() {
       console.log(url);
       for (var i = 0; i < data.results.length; i++) {
         var latLon = new google.maps.LatLng(data.results[i].latitude,data.results[i].longitude);
-        var marker = new google.maps.Marker({
-          position: latLon,
-        });  
-        marker.addListener('click', addInfoWindow(data, marker, i));
-        marker.setMap(map);
+        // if(loadMarkersInBounds(latLon)) {
+          var marker = new google.maps.Marker({
+            position: latLon,
+          });  
+          marker.addListener('click', addInfoWindow(data, marker, i));
+          marker.setMap(map);
+        // }  
       } 
     });
   }
