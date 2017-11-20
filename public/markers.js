@@ -12,6 +12,11 @@ function initMap() {
     center: newYorkCityLatLong,
     zoom: 9,
   });
+
+  //this listener works, but I am having a very hard time getting the NY Times api to work the way it is supposed to when using the sw,
+  //and ne parameters. When those are supplied it is supposed to keep the results to those within the box created by those two points, 
+  //but it doesn't work, not here or in their console. A different way to do this would be to manually check if every point is within the
+  //parameters.
   google.maps.event.addListener(map, 'bounds_changed', function() {
     var bounds = map.getBounds();
     sw = bounds.getSouthWest();
@@ -53,13 +58,11 @@ function loadMarkers() {
       console.log(url);
       for (var i = 0; i < data.results.length; i++) {
         var latLon = new google.maps.LatLng(data.results[i].latitude,data.results[i].longitude);
-        // if(loadMarkersInBounds(latLon)) {
-          var marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: latLon,
-          });  
-          marker.addListener('click', addInfoWindow(data, marker, i));
-          marker.setMap(map);
-        // }  
+        });  
+        marker.addListener('click', addInfoWindow(data, marker, i));
+        marker.setMap(map); 
       } 
     });
   }
@@ -69,7 +72,7 @@ function addInfoWindow(data, marker, index) {
   return function() {
     var infowindow = new google.maps.InfoWindow({
       content: '<h1>' + data.results[index].name + '</h1>' +
-               '<p>' + data.results[index].name + ' has a lat/lon of (' + data.results[index].latitude + ', ' + data.results[index].longitude + '). ' +
+               '<p>' + data.results[index].name + ' has a lat/lng of (' + data.results[index].latitude + ', ' + data.results[index].longitude + '). ' +
                 'It also has an elevation of ' + data.results[index].elevation + ' feet.</p>'
     });
     infowindow.open(map, marker);
