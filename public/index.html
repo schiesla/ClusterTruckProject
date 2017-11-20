@@ -26,6 +26,11 @@
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
 <body>
+    <form>
+        <input type="radio" name="facet" value="none" onchange="changeFacet(-1)"> None<br>
+        <input type="radio" name="facet" value="0" onchange="changeFacet(0)"> 0<br>
+        <input type="radio" name="facet" value="1" onchange="changeFacet(1)"> 1<br>
+      </form>
     <div id="map"></div>    
 </body>
 </html>
