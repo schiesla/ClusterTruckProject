@@ -28,16 +28,18 @@
 </head>
 <body>
   <div id="title">
-    <h1>ClusterTruck Take Home Problem</h1>
-    <h2>Created by: Logan Schiessle</h2>
-  </div>
-  <div id="facetForm">
-    <h3>Facet Category Options:</h3>
-    <form>
-        <input type="radio" name="facet" value="none" onchange="changeFacet(-1)"> None
-        <input type="radio" name="facet" value="0" onchange="changeFacet(0)"> 0
-        <input type="radio" name="facet" value="1" onchange="changeFacet(1)"> 1
-    </form>
+    <div id="titleWords">
+      <h1>ClusterTruck Take Home Problem</h1>
+      <h2>Created by: Logan Schiessle</h2>
+    </div>
+    <div class="facetDrop">
+        <button class="facetButton">Facet Category Options</button>
+        <div class="facetDrop-content">
+            <input type="radio" name="facet" value="none" onchange="changeFacet(-1)" checked> None <br>
+            <input type="radio" name="facet" value="0" onchange="changeFacet(0)"> 0 <br>
+            <input type="radio" name="facet" value="1" onchange="changeFacet(1)"> 1 <br>
+        </div>
+      </div>
   </div>
   <div id="map"></div>    
 </body>

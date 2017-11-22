@@ -1,13 +1,20 @@
 #title {
     background-color: orange;
-    height: 15%;
+    height: 100px;
+    width: 100%;
+    display: inline-block;
+}
+
+#titleWords {
+    float: left;
+    width: 90%;
+    height: 100px;
+    margin: 0px;
 }
 
 #map {
-    height: 80%;
-    width: 50%;
-    margin-top: 5%;
-    margin-left: 25%;
+    height: 100%;
+    width: 100%;   
 }
 
 html, body {
@@ -23,22 +30,48 @@ h1, h2 {
     text-align: center;
 }
 
-h3 {
-    margin-top: 5px;
+.facetButton {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
-#facetForm {
-    text-align: center;
+
+.facetDrop {
+    float: right;
+    width: 10%;
+    height: 50px;
+    margin-top: 15px;
+}
+
+.facetDrop-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%;
+}
+
+
+.facetDrop-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+}
+
+.facetDrop-content a:hover {
+    background-color: #f1f1f1
+}
+
+.facetDrop:hover .facetDrop-content {
+    display: block;
+}
+
+.facetDrop:hover .facetButton {
     background-color: white;
-    width: 50%;
-    height: 10%;
-    margin-left: 25%;
-    margin-top: 100px;
-    padding: 10px;
-    /* border: 1px solid #b6b6b6; */
-    border-radius: 25px;
-    box-shadow:  -1px 1px #b6b6b6,
-         -2px 2px #b6b6b6,
-         -3px 3px #b6b6b6,
-         -4px 4px #b6b6b6,
-         -5px 5px #b6b6b6;
+    color: black;
 }
