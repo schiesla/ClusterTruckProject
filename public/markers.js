@@ -50,7 +50,9 @@ function loadMarkers() {
   });
 }
   var things;
+  //This proxyurl was used to overcome a Access-Control-Allow-Origin error with CORS.
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  //could use this fetch method, or a GET ajax call.
   fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => JSON.parse(contents))
